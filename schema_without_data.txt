@@ -1,0 +1,43 @@
+CREATE SCHEMA project;
+
+USE project;
+
+CREATE TABLE login(
+login_id int(11) PRIMARY KEY,
+password varchar(45)
+);
+
+INSERT INTO login (login_id,password) values (1234,"password");
+
+
+CREATE TABLE products(
+product_number varchar(100) PRIMARY KEY,
+product_name varchar(100),
+product_description varchar(200),
+product_unit_price varchar(100)
+);
+
+
+CREATE TABLE product_store(
+product_number varchar(100) PRIMARY KEY ,
+number_of_units varchar(100),
+product_wholesale_price varchar(100),
+product_expiry_date varchar(100),
+FOREIGN KEY(product_number) REFERENCES products(product_number)
+);
+
+
+CREATE TABLE billing(
+billing_id int PRIMARY KEY auto_increment,
+amount varchar(100),
+total_amount varchar(100)
+);
+
+
+CREATE TABLE store_products_billing(
+ billing_id int,
+ product_number varchar(100),
+ quantity varchar(100),
+ price varchar(100),
+ FOREIGN KEY(billing_id) REFERENCES billing(billing_id)
+ );
